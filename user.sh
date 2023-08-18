@@ -1,9 +1,9 @@
 #!/bin/bash
 USER=systemadmin
-
+export http_proxy=http://180.148.128.125:80/ && export https_proxy=http://180.148.128.125:80/
 rpm -qa | grep sudo
 if [ $? -ne 0 ] ; then
-    export http_proxy=http://180.148.128.125:80/ && export https_proxy=http://180.148.128.125:80/ && yum install sudo -y && export http_proxy= && export https_proxy=
+    yum install sudo -y
 fi
 
 useradd -m $USER -s /bin/bash && mkdir /home/$USER/.ssh/ && touch /home/$USER/.ssh/authorized_keys && chown -R $USER:$USER /home/$USER/.ssh && chmod 600 /home/$USER/.ssh/authorized_keys
